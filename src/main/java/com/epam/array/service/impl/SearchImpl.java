@@ -3,14 +3,20 @@ package com.epam.array.service.impl;
 import com.epam.array.entity.CustomArray;
 import com.epam.array.exception.CustomArrayException;
 import com.epam.array.service.SearchService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class SearchImpl implements SearchService {
+    private static final Logger logger = LogManager.getLogger(SearchImpl.class);
+
     @Override
     public int findMinElement(CustomArray customArray) throws CustomArrayException {
         if (customArray.isEmpty()) {
+            logger.warn("Array is empty! Can't find min value.");
             throw new CustomArrayException("Array is empty!");
-            //log
         }
+
         int[] array = customArray.getArray();
         int min = array[0];
         for (int element : array) {
@@ -22,9 +28,10 @@ public class SearchImpl implements SearchService {
     @Override
     public int findMaxElement(CustomArray customArray) throws CustomArrayException {
         if (customArray.isEmpty()) {
+            logger.warn("Array is empty! Can't find min value.");
             throw new CustomArrayException("Array is empty!");
-            //log
         }
+
         int[] array = customArray.getArray();
         int max = array[0];
         for (int element : array) {
@@ -34,10 +41,15 @@ public class SearchImpl implements SearchService {
     }
 
     @Override
-    public int[] findNegatives(CustomArray customArray) {
+    public int[] findNegatives(CustomArray customArray) throws CustomArrayException {
+        if (customArray.isEmpty()) {
+            logger.warn("Array is empty! Can't find negatives.");
+            throw new CustomArrayException("Array is empty!");
+        }
+
         int[] array = customArray.getArray();
-        int negativesCounter = 0;
         int[] result;
+        int negativesCounter = 0;
 
         for (int element : array) {
             if (element < 0) negativesCounter++;
@@ -57,10 +69,15 @@ public class SearchImpl implements SearchService {
     }
 
     @Override
-    public int[] findPositives(CustomArray customArray) {
+    public int[] findPositives(CustomArray customArray) throws CustomArrayException {
+        if (customArray.isEmpty()) {
+            logger.warn("Array is empty! Can't find positives.");
+            throw new CustomArrayException("Array is empty!");
+        }
+
         int[] array = customArray.getArray();
-        int positivesCounter = 0;
         int[] result;
+        int positivesCounter = 0;
 
         for (int element : array) {
             if (element > 0) positivesCounter++;

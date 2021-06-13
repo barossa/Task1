@@ -1,6 +1,7 @@
 package com.epam.array.entity;
 
 import com.epam.array.exception.CustomArrayException;
+
 import java.util.Arrays;
 
 public class CustomArray {
@@ -11,45 +12,45 @@ public class CustomArray {
     }
 
     public int getElement(int index) throws CustomArrayException {
-        if(index < 0 || index > array.length){
+        if (index < 0 || index > array.length) {
             throw new CustomArrayException(
                     String.format("Index out of bound: (%d) -> [0-%d]",
                             index,
-                            array.length-1));
+                            array.length - 1));
         }
         return array[index];
     }
 
     public void setElement(int index, int element) throws CustomArrayException {
-        if(index < 0 || index > array.length){
+        if (index < 0 || index > array.length) {
             throw new CustomArrayException(
                     String.format("Index out of bound: (%d) -> / [0-%d]",
                             index,
-                            array.length-1));
+                            array.length - 1));
         }
         array[index] = element;
     }
 
-    public int getLength(){
+    public int getLength() {
         return array.length;
     }
 
-    public int[] getArray(){
-        return Arrays.copyOf(array,array.length);
+    public int[] getArray() {
+        return Arrays.copyOf(array, array.length);
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return array.length == 0;
     }
 
-    public void setArray(int[] array){
-        this.array = Arrays.copyOf(array,array.length);
+    public void setArray(int[] array) {
+        this.array = Arrays.copyOf(array, array.length);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if(o.getClass() != CustomArray.class) return false;
+        if (o.getClass() != CustomArray.class) return false;
 
         CustomArray that = (CustomArray) o;
 
@@ -67,8 +68,6 @@ public class CustomArray {
 
     @Override
     public String toString() {
-        return "CustomArray{" +
-                Arrays.toString(array) +
-                '}';
+        return "CustomArray" + Arrays.toString(array);
     }
 }

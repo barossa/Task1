@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class SwapTest {
     @Test
-    public void makePositive() {
+    public void makePositive() throws CustomArrayException {
         SwapImpl swap = new SwapImpl();
         CustomArray customArray = new CustomArray(-1, 1, -2, 2, -3, 3, 0, 8);
         int[] expected = customArray.getArray();
@@ -18,11 +18,7 @@ public class SwapTest {
                 element = element * -1;
         }
 
-        try {
-            swap.makePositive(customArray, 0, customArray.getLength() - 1);
-        } catch (CustomArrayException e) {
-            e.printStackTrace();
-        }
+        swap.makePositive(customArray, 0, customArray.getLength() - 1);
         int[] actual = customArray.getArray();
 
         Assert.assertArrayEquals(expected, actual);
@@ -30,7 +26,7 @@ public class SwapTest {
     }
 
     @Test
-    public void makeNegative() {
+    public void makeNegative() throws CustomArrayException {
         SwapImpl swap = new SwapImpl();
         CustomArray customArray = new CustomArray(-1, 1, -2, 2, -3, 3, 0, 8);
         int[] expected = customArray.getArray();
@@ -39,19 +35,14 @@ public class SwapTest {
             if (element > 0)
                 element = element * -1;
         }
-
-        try {
-            swap.makeNegative(customArray, 0, customArray.getLength() - 1);
-        } catch (CustomArrayException e) {
-            e.printStackTrace();
-        }
+        swap.makeNegative(customArray, 0, customArray.getLength() - 1);
         int[] actual = customArray.getArray();
 
         Assert.assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void reverseElements() {
+    public void reverseElements() throws CustomArrayException {
         SwapImpl swap = new SwapImpl();
         CustomArray customArray = new CustomArray(-1, 1, -2, 2, -3, 3, 0, 8);
         int[] expected = customArray.getArray();
@@ -59,12 +50,7 @@ public class SwapTest {
         for (int element : expected) {
             element = element * -1;
         }
-
-        try {
-            swap.reverseElements(customArray, 0, customArray.getLength() - 1);
-        } catch (CustomArrayException e) {
-            e.printStackTrace();
-        }
+        swap.reverseElements(customArray, 0, customArray.getLength() - 1);
         int[] actual = customArray.getArray();
 
         Assert.assertArrayEquals(expected, actual);
